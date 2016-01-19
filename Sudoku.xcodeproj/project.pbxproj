@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		D3C4F0051C4D84170074EBDF /* SudokuCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudokuCollectionViewController.swift; sourceTree = "<group>"; };
-		D3C4F0071C4D87180074EBDF /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		D3C4F0071C4D87180074EBDF /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Box.swift; path = ../Box.swift; sourceTree = "<group>"; };
 		D3D6827E1C4821360069DE13 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3D682811C4821360069DE13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3D682831C4821360069DE13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +83,6 @@
 		D3D682751C4821360069DE13 = {
 			isa = PBXGroup;
 			children = (
-				D3C4F0071C4D87180074EBDF /* Box.swift */,
 				D3D682801C4821360069DE13 /* Sudoku */,
 				D3D682981C4821360069DE13 /* SudokuTests */,
 				D3D682A31C4821360069DE13 /* SudokuUITests */,
@@ -104,6 +103,7 @@
 		D3D682801C4821360069DE13 /* Sudoku */ = {
 			isa = PBXGroup;
 			children = (
+				D3C4F0071C4D87180074EBDF /* Box.swift */,
 				D3C4F0051C4D84170074EBDF /* SudokuCollectionViewController.swift */,
 				D3D682811C4821360069DE13 /* AppDelegate.swift */,
 				D3D682831C4821360069DE13 /* ViewController.swift */,
