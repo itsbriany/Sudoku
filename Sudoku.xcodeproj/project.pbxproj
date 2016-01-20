@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D369C7201C4F2850009F6BA8 /* SudokuCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D369C71F1C4F2850009F6BA8 /* SudokuCollectionViewFlowLayout.swift */; };
 		D396E0BA1C4EBEE0005FFB2F /* BoxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D396E0B91C4EBEE0005FFB2F /* BoxCollectionViewCell.swift */; };
 		D3C4F0061C4D84170074EBDF /* SudokuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C4F0051C4D84170074EBDF /* SudokuCollectionViewController.swift */; };
 		D3D682821C4821360069DE13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D682811C4821360069DE13 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D369C71F1C4F2850009F6BA8 /* SudokuCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudokuCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		D396E0B91C4EBEE0005FFB2F /* BoxCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxCollectionViewCell.swift; sourceTree = "<group>"; };
 		D3C4F0051C4D84170074EBDF /* SudokuCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SudokuCollectionViewController.swift; sourceTree = "<group>"; };
 		D3D6827E1C4821360069DE13 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 				D3D6828D1C4821360069DE13 /* LaunchScreen.storyboard */,
 				D3D682901C4821360069DE13 /* Info.plist */,
 				D3D682881C4821360069DE13 /* Sudoku.xcdatamodeld */,
+				D369C71F1C4F2850009F6BA8 /* SudokuCollectionViewFlowLayout.swift */,
 			);
 			path = Sudoku;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				D3D682841C4821360069DE13 /* HomeViewController.swift in Sources */,
 				D396E0BA1C4EBEE0005FFB2F /* BoxCollectionViewCell.swift in Sources */,
 				D3C4F0061C4D84170074EBDF /* SudokuCollectionViewController.swift in Sources */,
+				D369C7201C4F2850009F6BA8 /* SudokuCollectionViewFlowLayout.swift in Sources */,
 				D3D6828A1C4821360069DE13 /* Sudoku.xcdatamodeld in Sources */,
 				D3D682821C4821360069DE13 /* AppDelegate.swift in Sources */,
 			);
