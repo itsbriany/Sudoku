@@ -37,15 +37,19 @@ class SudokuCollectionViewController: UICollectionViewController {
             forIndexPath: indexPath) as! BoxCollectionViewCell
         cell.layer.borderWidth = sudokuCollectionViewCellBorderWidth
         cell.layer.borderColor = sudokuCollectionViewCellBorderColor
-        // TODO The cells are overlapping!
-        cell.frame = customCellFrame(0, y: 0)
+        cell.frame = customCellFrame(indexPath)
+        // TODO Might want to use a button instead of a label
+        cell.number.text = "3"
         return cell
     }
     
-    func customCellFrame(x: CGFloat, y: CGFloat) -> CGRect {
+    func customCellFrame(cellIndexPath: NSIndexPath) -> CGRect {
         let screenSize = UIScreen.mainScreen().bounds
         let cellSize = screenSize.width / CGFloat(cellColumns)
-        return CGRect(x: x, y: y, width: cellSize, height: cellSize)
+        let xPosition = cellIndexPath.row % cellRows
+        let yPosition = cellIndexPath.row / cellRows
+        return CGRect(x: cellSize * CGFloat(xPosition),
+            y: cellSize * CGFloat(yPosition), width: cellSize, height: cellSize)
     }
     
     func getSudokuCollectionViewCells() -> [BoxCollectionViewCell!] {

@@ -76,6 +76,9 @@
                                     <constraint firstItem="MUX-vJ-WdA" firstAttribute="centerY" secondItem="39T-ou-QLV" secondAttribute="centerY" id="NPB-NE-5yk"/>
                                 </constraints>
                                 <size key="customSize" width="33" height="33"/>
+                                <connections>
+                                    <outlet property="number" destination="MUX-vJ-WdA" id="nh4-hu-bKC"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
