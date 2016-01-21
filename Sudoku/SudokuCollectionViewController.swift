@@ -16,10 +16,12 @@ class SudokuCollectionViewController: UICollectionViewController {
     let sudokuCollectionViewControllerCellIdentifier = "BoxCollectionViewCell"
     let sudokuCollectionViewCellBorderWidth: CGFloat = 1
     let sudokuCollectionViewCellBorderColor = UIColor.blackColor().CGColor
+    var sudokuManager: SudokuManager?
     
     // MARK: UICollectionViewController overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        sudokuManager = SudokuManager(format: SudokuFormat(rows: cellRows, columns: cellColumns))
     }
     
     override func collectionView(collectionView: UICollectionView,
@@ -39,7 +41,7 @@ class SudokuCollectionViewController: UICollectionViewController {
         cell.layer.borderColor = sudokuCollectionViewCellBorderColor
         cell.frame = customCellFrame(indexPath)
         // TODO Might want to use a button instead of a label
-        cell.number.text = "3"
+        sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell)
         return cell
     }
     
@@ -51,6 +53,8 @@ class SudokuCollectionViewController: UICollectionViewController {
         return CGRect(x: cellSize * CGFloat(xPosition),
             y: cellSize * CGFloat(yPosition), width: cellSize, height: cellSize)
     }
+    
+
     
     func getSudokuCollectionViewCells() -> [BoxCollectionViewCell!] {
         let sudokuCollectionViewCells = [BoxCollectionViewCell!](count: (cellRows * cellColumns), repeatedValue: nil)

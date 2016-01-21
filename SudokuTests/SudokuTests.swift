@@ -29,7 +29,8 @@ class SudokuTests: XCTestCase {
     }
     
     func testReadSudokuDatabase() {
-        let sudokuManager: SudokuManager = SudokuManager()
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
         let text = sudokuManager.readSudokuDB()
         XCTAssertNotEqual(text, "Could not read sudoku database")
         XCTAssertNotEqual(text, "IO error reading database")
@@ -39,15 +40,18 @@ class SudokuTests: XCTestCase {
     }
     
     func testLoadSudokus() {
-        let sudokuManager: SudokuManager = SudokuManager()
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
         XCTAssertGreaterThan(sudokuManager.sudokus.count, 10)
     }
     
-    func testSudokuCell() {
-        let sudoku: Sudoku = Sudoku(sudoku: "....7...1..6.....5......4...9....5..6.81.5..........8731..9....76..2....2..31...9")
-        XCTAssertEqual(sudoku.squares?[3][0], 7)
-        XCTAssertEqual(sudoku.squares?[8][8], 9)
-        XCTAssertEqual(sudoku.squares?[4][8], 1)
+    func testSudokuCellMapping() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudoku: Sudoku = Sudoku(sudoku: "....7...1..6.....5......4...9....5..6.81.5..........8731..9....76..2....2..31...9",
+        format: format)
+        XCTAssertEqual(sudoku.cells[0][4], 7)
+        XCTAssertEqual(sudoku.cells[8][8], 9)
+        XCTAssertEqual(sudoku.cells[8][3], 3)
     }
     
 }

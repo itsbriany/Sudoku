@@ -11,25 +11,26 @@ import Foundation
 public class Sudoku {
     
     // MARK: Properties
-    let rows = 9
-    let columns = 9
-    var squares: [[Int]]?
+    var format: SudokuFormat
+    var cells: [[Int]]
     
-    init!(sudoku: String) {
-        squares = [[Int]](count: columns, repeatedValue: [Int](count: rows, repeatedValue: 0))
-        loadSudoku(sudoku)
+    init!(sudoku: String, format: SudokuFormat) {
+        self.format = format
+        self.cells = [[Int]](count: format.rows, repeatedValue: [Int](count: format.columns, repeatedValue: 0))
+        mapValues(sudoku)
     }
     
-    private func loadSudoku(sudoku: String) {
+    // MARK: Private Interface
+    private func mapValues(sudoku: String) {
         var localRows = 0
         var localColumns = 0
         for char in sudoku.characters {
             if let number = Int(String(char)) {
-                squares![localColumns][localRows] = number
+                cells[localRows][localColumns] = number
             }
             localColumns++
-            localColumns %= columns
-            if (localRows != 0 && localColumns % columns == 0) {
+            localColumns %= format.columns
+            if (localColumns == 0) {
                 localRows++
             }
         }

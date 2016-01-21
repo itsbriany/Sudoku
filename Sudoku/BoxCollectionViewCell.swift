@@ -11,5 +11,5 @@ import UIKit
 class BoxCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
-    @IBOutlet weak var number: UILabel!
+    @IBOutlet weak var value: UILabel!
 }

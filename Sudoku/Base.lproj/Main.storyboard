@@ -49,7 +49,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.83833606198584842" green="1" blue="0.99667064407045902" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="scrollIndicatorInsets" minX="1" minY="0.0" maxX="1" maxY="0.0"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="ikm-nN-I8P">
                             <size key="itemSize" width="33" height="33"/>
@@ -83,7 +83,7 @@
                                 </constraints>
                                 <size key="customSize" width="33" height="33"/>
                                 <connections>
-                                    <outlet property="number" destination="MUX-vJ-WdA" id="nh4-hu-bKC"/>
+                                    <outlet property="value" destination="MUX-vJ-WdA" id="rb4-xj-TNj"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

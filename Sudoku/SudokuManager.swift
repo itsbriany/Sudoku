@@ -7,20 +7,48 @@
 //
 
 import Foundation
+import UIKit
 
 public class SudokuManager {
     
     // MARK: Properties
     let sudokuDatabaseFileName = "SudokuDB"
     var sudokus: [Sudoku] = [Sudoku]()
+    var activeSudoku: Sudoku?
     
-    init!() {
-        loadSudokus()
+    init!(format: SudokuFormat) {
+        loadSudokus(format)
     }
     
     
     // MARK: Public Interface
-    func readSudokuDB() -> String {
+    func loadSudokus(format: SudokuFormat) {
+        let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
+        for sudoku in sudokuStringArray {
+            sudokus.append(Sudoku(sudoku: sudoku, format: format))
+        }
+        if (!sudokus.isEmpty) {
+            setActiveSudoku(0)
+        }
+    }
+    
+    func setActiveSudoku(index: Int) -> Bool {
+        if (index >= sudokus.count) {
+            return false
+        }
+        activeSudoku = sudokus[index]
+        return true
+    }
+    
+    func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: BoxCollectionViewCell) {
+        let row = indexPath.row / (activeSudoku?.format.rows)!
+        let column = indexPath.row % (activeSudoku?.format.columns)!
+        let cellValue = String(activeSudoku!.cells[row][column])
+        cell.value.text = cellValue
+    }
+    
+    // MARK: Private Interface
+    private func readSudokuDB() -> String {
         let readError = "Could not read sudoku database"
         let ioError = "IO error reading database"
         let path = NSBundle.mainBundle().pathForResource(sudokuDatabaseFileName, ofType: "")
@@ -35,15 +63,5 @@ public class SudokuManager {
         return readError
     }
     
-    func loadSudokus() {
-        let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
-        for sudoku in sudokuStringArray {
-            sudokus.append(Sudoku(sudoku: sudoku))
-        }
-    }
-    
-    func getSudokus() -> [Sudoku] {
-        return sudokus
-    }
-    
+
 }
