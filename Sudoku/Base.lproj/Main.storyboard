@@ -23,7 +23,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
-                                    <segue destination="17V-BR-CsT" kind="show" id="pu6-BM-jXq"/>
+                                    <segue destination="W7m-gs-OKf" kind="presentation" id="DVe-EZ-8U5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -41,62 +41,70 @@
             </objects>
             <point key="canvasLocation" x="1186.5" y="308.5"/>
         </scene>
-        <!--Sudoku Collection View Controller-->
-        <scene sceneID="fnB-lx-DJr">
+        <!--Sudoku View Controller-->
+        <scene sceneID="gao-4b-SJU">
             <objects>
-                <collectionViewController id="17V-BR-CsT" customClass="SudokuCollectionViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Cvb-i6-dNq">
+                <viewController id="W7m-gs-OKf" customClass="SudokuViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AUa-rV-VDP"/>
+                        <viewControllerLayoutGuide type="bottom" id="rtg-5e-zZ2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dvq-Hf-eDR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.83833606198584842" green="1" blue="0.99667064407045902" alpha="1" colorSpace="calibratedRGB"/>
-                        <inset key="scrollIndicatorInsets" minX="1" minY="0.0" maxX="1" maxY="0.0"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="ikm-nN-I8P">
-                            <size key="itemSize" width="33" height="33"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="3" minY="3" maxX="3" maxY="3"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BoxCollectionViewCell" id="39T-ou-QLV" customClass="BoxCollectionViewCell" customModule="Sudoku" customModuleProvider="target">
-                                <rect key="frame" x="3" y="67" width="33" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUX-vJ-WdA">
-                                            <rect key="frame" x="12" y="8.5" width="8.5" height="16"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <animations/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SiO-sE-UUz">
+                                <rect key="frame" x="20" y="20" width="335" height="425"/>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstItem="MUX-vJ-WdA" firstAttribute="centerX" secondItem="39T-ou-QLV" secondAttribute="centerX" id="FRi-4t-EDP"/>
-                                    <constraint firstItem="MUX-vJ-WdA" firstAttribute="centerY" secondItem="39T-ou-QLV" secondAttribute="centerY" id="NPB-NE-5yk"/>
-                                </constraints>
-                                <size key="customSize" width="33" height="33"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wek-cs-5yE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="SudokuCollectionViewCell" id="Lsz-vj-5Aw" customClass="SudokuCollectionViewCell" customModule="Sudoku" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDp-Rw-Cay">
+                                                    <rect key="frame" x="4" y="14" width="42" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="value" destination="IDp-Rw-Cay" id="h9z-Ee-fLm"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="value" destination="MUX-vJ-WdA" id="rb4-xj-TNj"/>
+                                    <outlet property="dataSource" destination="W7m-gs-OKf" id="Lsw-es-uOg"/>
+                                    <outlet property="delegate" destination="W7m-gs-OKf" id="UHA-v1-IE0"/>
                                 </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="17V-BR-CsT" id="do9-qc-qeN"/>
-                            <outlet property="delegate" destination="17V-BR-CsT" id="2gY-Ub-v7L"/>
-                        </connections>
-                    </collectionView>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I4f-VJ-iUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="sudokuCollectionView" destination="SiO-sE-UUz" id="nbq-hm-ABq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EYf-oF-KOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1704.5" y="308.5"/>
+            <point key="canvasLocation" x="1722.5" y="308.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zeF-2k-h33">

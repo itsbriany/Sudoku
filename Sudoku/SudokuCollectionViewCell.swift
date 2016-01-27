@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoxCollectionViewCell: UICollectionViewCell {
+class SudokuCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     @IBOutlet weak var value: UILabel!

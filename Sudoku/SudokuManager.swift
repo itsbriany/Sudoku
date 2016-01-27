@@ -40,15 +40,14 @@ public class SudokuManager {
         return true
     }
     
-    func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: BoxCollectionViewCell) {
+    func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: SudokuCollectionViewCell) {
         let row = indexPath.row / (activeSudoku?.format.rows)!
         let column = indexPath.row % (activeSudoku?.format.columns)!
         let cellValue = String(activeSudoku!.cells[row][column])
         cell.value.text = cellValue
     }
     
-    // MARK: Private Interface
-    private func readSudokuDB() -> String {
+    func readSudokuDB() -> String {
         let readError = "Could not read sudoku database"
         let ioError = "IO error reading database"
         let path = NSBundle.mainBundle().pathForResource(sudokuDatabaseFileName, ofType: "")
