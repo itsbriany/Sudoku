@@ -38,6 +38,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sudokuCellIdentifier, forIndexPath: indexPath) as! SudokuCollectionViewCell
         formatCell(cell, indexPath: indexPath)
         sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell)
+        // TODO dynamically size the sudoku layout based on the sizes of the cells
         return cell
     }
     
@@ -48,36 +49,23 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.value.text = "yes"
     }
     
-    // Margins and padding from edge of layout
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
-    }
-    
-    // Spacing between cells
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0.0
-    }
-    
     // Dimensions of each cell
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 5.0, height: 10.0)
+        return customCellFrame(indexPath)
     }
     
     // MARK: Helpers
     func formatCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
         cell.layer.borderWidth = sudokuCollectionViewCellBorderWidth
         cell.layer.borderColor = sudokuCollectionViewCellBorderColor
-//        cell.value.text = "0"
-//        cell.frame = customCellFrame(indexPath)
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 3;
     }
     
-    func customCellFrame(indexPath: NSIndexPath) -> CGRect {
+    func customCellFrame(indexPath: NSIndexPath) -> CGSize {
         let screenSize = sudokuCollectionView.bounds
-        let cellSize = screenSize.width / CGFloat(cellColumns)
-        let xPosition = indexPath.row % cellRows
-        let yPosition = indexPath.row / cellRows
-        return CGRect(x: cellSize * CGFloat(xPosition),
-            y: cellSize * CGFloat(yPosition), width: cellSize, height: cellSize)
+        let cellSize = screenSize.width / (CGFloat(cellColumns) + 3) // +3 to make up for padding and margins
+        return CGSize(width: cellSize, height: cellSize)
     }
     
     func getSudokuCollectionViewCells() -> [SudokuCollectionViewCell!] {
