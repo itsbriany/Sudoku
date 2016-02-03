@@ -44,7 +44,11 @@ public class SudokuManager {
         let row = indexPath.row / (activeSudoku?.format.rows)!
         let column = indexPath.row % (activeSudoku?.format.columns)!
         let cellValue = String(activeSudoku!.cells[row][column])
-        cell.value.text = cellValue
+        if (cellValue != "0") {
+            cell.value.text = cellValue
+            cell.value.font = UIFont.boldSystemFontOfSize(17.0)
+            cell.layer.borderWidth = 2.0
+        }
     }
     
     func readSudokuDB() -> String {
