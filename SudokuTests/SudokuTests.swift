@@ -54,4 +54,15 @@ class SudokuTests: XCTestCase {
         XCTAssertEqual(sudoku.cells[8][3], 3)
     }
     
+    func testIsValidSudoku() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        var sudoku: Sudoku = Sudoku(sudoku: "....7...1..6.....5......4...9....5..6.81.5..........8731..9....76..2....2..31...9",
+             format: format)
+        XCTAssertFalse(sudoku.isSolved())
+        sudoku = Sudoku(sudoku: "294167358315489627678253491456312879983574216721698534562941783839726145147835962", format: format)
+        XCTAssert(sudoku.isSolved())
+        sudoku = Sudoku(sudoku: "294167358315489627678253491456312879983574216721698534562941783839726145147835961", format: format)
+        XCTAssertFalse(sudoku.isSolved())
+    }
+    
 }

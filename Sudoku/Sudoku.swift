@@ -20,6 +20,19 @@ public class Sudoku {
         mapValues(sudoku)
     }
     
+    // MARK: Public Interface
+    func isSolved() -> Bool {
+        for row in self.cells {
+            if (!self.checkColumn(row)) {
+                return false
+            }
+            if (!self.checkRow(row)) {
+                return false
+            }
+        }
+        return true
+    }
+    
     // MARK: Private Interface
     private func mapValues(sudoku: String) {
         var localRows = 0
@@ -34,5 +47,37 @@ public class Sudoku {
                 localRows++
             }
         }
+    }
+    
+    private func sortIntegers(value1: Int, value2: Int) -> Bool {
+        return value1 < value2
+    }
+    
+    private func checkColumn(row: [Int]) -> Bool {
+        var current: Int = 1
+        var unsortedColumn: [Int] = [Int]()
+        for value in row {
+            unsortedColumn.append(value)
+        }
+        let sortedColumn = unsortedColumn.sort(sortIntegers)
+        for value in sortedColumn {
+            if (value < current) {
+                return false
+            }
+            current++
+        }
+        return true
+    }
+    
+    private func checkRow(row: [Int]) -> Bool {
+        var current = 1
+        let sortedRow = row.sort(sortIntegers)
+        for value in sortedRow {
+            if (value < current) {
+                return false
+            }
+            current++
+        }
+        return true
     }
 }
