@@ -14,20 +14,21 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var sudokuInputCollectionView: UICollectionView!
     @IBOutlet weak var sudokuCollectionView: UICollectionView!
     
-    // TODO Implement a picker view each time a ZERO is tapped
-    // TODO Fill the View, NOT THE SCREEN!
-    
     // MARK: Properties
     let cellRows = 9
     let cellColumns = 9
+    let inputButtons = 9
     let sudokuCellIdentifier = "SudokuCollectionViewCell"
     let sudokuButtonCellIdentifier = "SudokuButtonCollectionViewCell"
-    let sudokuCollectionViewCellBorderWidth: CGFloat = 1
     let sudokuCollectionViewCellBorderColor = UIColor.blackColor().CGColor
-    let selectedSudokuCollectionViewCellBorderColor = UIColor.greenColor().CGColor
+    let selectedSudokuCollectionViewCellBorderColor = UIColor.yellowColor().CGColor
+    let selectedSudokuCollectionViewCellBorderWidth: CGFloat = 3
+    let sudokuCollectionViewCellBorderWidth: CGFloat = 1
+
     var sudokuManager: SudokuManager?
     var selectedSudokuCell: SudokuCollectionViewCell?
     
+    // Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
         sudokuManager = SudokuManager(format: SudokuFormat(rows: self.cellRows, columns: self.cellColumns))
@@ -36,7 +37,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Cell count
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == self.sudokuInputCollectionView) {
-            return 9
+            return self.inputButtons
         }
         if (collectionView == self.sudokuCollectionView) {
             return getSudokuCollectionViewCells().count
@@ -60,15 +61,14 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Selection behaviour
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (collectionView == self.sudokuCollectionView) {
-            
             if (self.selectedSudokuCell != nil) {
                 self.selectedSudokuCell!.layer.borderColor = self.sudokuCollectionViewCellBorderColor
+                self.selectedSudokuCell!.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
             }
-            
-            // You can use indexPath to get "cell number x", or get the cell like:
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
             self.selectedSudokuCell = cell
             self.selectedSudokuCell!.layer.borderColor = self.selectedSudokuCollectionViewCellBorderColor
+            self.selectedSudokuCell!.layer.borderWidth = self.selectedSudokuCollectionViewCellBorderWidth
             return
         }
     }
@@ -88,14 +88,15 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
 
     // MARK: Helpers
     func formatSudokuCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
-        cell.layer.borderWidth = sudokuCollectionViewCellBorderWidth
-        cell.layer.borderColor = sudokuCollectionViewCellBorderColor
+        cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
+        cell.layer.borderColor = self.sudokuCollectionViewCellBorderColor
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 3;
     }
     
     func formatInputCell(cell: SudokuButtonCollectionViewCell, indexPath: NSIndexPath) {
-        cell.layer.borderColor = sudokuCollectionViewCellBorderColor
+        cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
+        cell.layer.borderColor = self.sudokuCollectionViewCellBorderColor
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 3;
         cell.value.setTitle(String(indexPath.row + 1), forState: .Normal)

@@ -48,7 +48,10 @@ public class SudokuManager {
             cell.value.text = cellValue
             cell.value.font = UIFont.boldSystemFontOfSize(17.0)
             cell.layer.borderWidth = 2.0
+            cell.userInteractionEnabled = false
+            return
         }
+        cell.value.text = ""
     }
     
     func readSudokuDB() -> String {
