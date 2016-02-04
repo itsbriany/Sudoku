@@ -31,8 +31,8 @@ class SudokuTests: XCTestCase {
     func testReadSudokuDatabase() {
         let format = SudokuFormat(rows: 9, columns: 9)
         let sudokuManager: SudokuManager = SudokuManager(format: format)
-        let text = sudokuManager.readSudokuDB()
-        XCTAssertNotEqual(text, "Could not read sudoku database")
+        let text = sudokuManager.readDB(sudokuManager.sudokuDatabaseFileName)
+        XCTAssertNotEqual(text, "Could not read database")
         XCTAssertNotEqual(text, "IO error reading database")
         XCTAssertFalse(text.isEmpty)
         XCTAssertTrue(text.containsString("8.......24...3........5..1...1...56.......9.....7........8.4..7.6....3...9.2....."))
@@ -96,5 +96,26 @@ class SudokuTests: XCTestCase {
         XCTAssertNotEqual(sudokuManager.activeSudoku?.cells[0][1], 8)
         XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][0], 4)
         XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][1], 0)
+    }
+    
+    func testSolveSudoku() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
+        XCTAssertFalse(sudokuManager.activeSudoku!.isSolved())
+        
+        sudokuManager.solveActiveSudoku()
+        XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
+        
+        sudokuManager.setActiveSudoku(400)
+        XCTAssertFalse(sudokuManager.activeSudoku!.isSolved())
+
+        sudokuManager.solveActiveSudoku()
+        XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
+        
+        sudokuManager.setActiveSudoku(1464)
+        XCTAssertFalse(sudokuManager.activeSudoku!.isSolved())
+        
+        sudokuManager.solveActiveSudoku()
+        XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
     }
 }

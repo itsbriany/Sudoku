@@ -51,10 +51,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Load the cells in the collection view
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if (collectionView == self.sudokuCollectionView) {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.sudokuCellIdentifier, forIndexPath: indexPath) as! SudokuCollectionViewCell
-            formatSudokuCell(cell, indexPath: indexPath)
-            self.sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell)
-            return cell
+            return loadSudokuCollectionViewCell(collectionView, cellForItemAtIndexPath: indexPath)
         }
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.sudokuButtonCellIdentifier, forIndexPath: indexPath) as! SudokuButtonCollectionViewCell
         formatInputCell(cell, indexPath: indexPath)
@@ -64,14 +61,9 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Selection behaviour
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (collectionView == self.sudokuCollectionView) {
-            if (self.selectedSudokuCell != nil) {
-                self.selectedSudokuCell!.layer.borderColor = self.sudokuCollectionViewCellBorderColor
-                self.selectedSudokuCell!.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
-            }
-            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
-            self.selectedSudokuCell = cell
-            self.selectedSudokuCell!.layer.borderColor = self.selectedSudokuCollectionViewCellBorderColor
-            self.selectedSudokuCell!.layer.borderWidth = self.selectedSudokuCollectionViewCellBorderWidth
+            resetSelectedCellBorder()
+            selectCell(didSelectItemAtIndexPath: indexPath)
+            highlightSelectedCellBorder()
             return
         }
     }
@@ -85,8 +77,11 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBAction func updateSelection(sender: UIButton) {
         if ((self.selectedSudokuCell) != nil) {
             self.selectedSudokuCell?.value.text = sender.titleLabel?.text
-            // TODO update the data model with the selected value
-            //self.sudokuManager?.updateActiveSudoku(<#T##rowIndex: Int##Int#>, columnIndex: <#T##Int#>, value: <#T##Int#>)
+            let index = self.sudokuCollectionView.indexPathForCell(self.selectedSudokuCell!)
+            let row = index!.row / sudokuManager!.format!.rows
+            let column = index!.row % sudokuManager!.format!.columns
+            let value: Int = Int(self.selectedSudokuCell!.value.text!)!
+            self.sudokuManager!.updateActiveSudoku(row, columnIndex: column, value: value)
             return
         }
     }
@@ -103,16 +98,27 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.gameStatus.text = self.loseText
     }
     
+    @IBAction func resetSudoku(sender: UIButton) {
+        self.sudokuManager!.resetActiveSudoku()
+        refreshSudokuCollectionView()
+    }
+    
+    
+    @IBAction func solveSudoku(sender: AnyObject) {
+        self.sudokuManager!.solveActiveSudoku()
+        refreshSudokuCollectionView()
+    }
+    
     
     // MARK: Helpers
-    func formatSudokuCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
+    private func formatSudokuCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
         cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
         cell.layer.borderColor = self.sudokuCollectionViewCellBorderColor
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 3;
     }
     
-    func formatInputCell(cell: SudokuButtonCollectionViewCell, indexPath: NSIndexPath) {
+    private func formatInputCell(cell: SudokuButtonCollectionViewCell, indexPath: NSIndexPath) {
         cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
         cell.layer.borderColor = self.sudokuCollectionViewCellBorderColor
         cell.layer.masksToBounds = true
@@ -120,15 +126,46 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.value.setTitle(String(indexPath.row + 1), forState: .Normal)
     }
     
-    func customCellFrame(indexPath: NSIndexPath) -> CGSize {
+    private func customCellFrame(indexPath: NSIndexPath) -> CGSize {
         let screenSize = sudokuCollectionView.bounds
         let cellSize = screenSize.width / (CGFloat(cellColumns) + 3) // +3 to make up for padding and margins
         return CGSize(width: cellSize, height: cellSize)
     }
     
-    func getSudokuCollectionViewCells() -> [SudokuCollectionViewCell!] {
+    private func getSudokuCollectionViewCells() -> [SudokuCollectionViewCell!] {
         let sudokuCollectionViewCells = [SudokuCollectionViewCell!](count: (cellRows * cellColumns), repeatedValue: nil)
         return sudokuCollectionViewCells
+    }
+    
+    private func resetSelectedCellBorder() {
+        if (self.selectedSudokuCell != nil) {
+            self.selectedSudokuCell!.layer.borderColor = self.sudokuCollectionViewCellBorderColor
+            self.selectedSudokuCell!.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
+        }
+    }
+    
+    private func highlightSelectedCellBorder() {
+        self.selectedSudokuCell!.layer.borderColor = self.selectedSudokuCollectionViewCellBorderColor
+        self.selectedSudokuCell!.layer.borderWidth = self.selectedSudokuCollectionViewCellBorderWidth
+    }
+    
+    private func selectCell(didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.sudokuCollectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
+        self.selectedSudokuCell = cell
+    }
+    
+    private func loadSudokuCollectionViewCell(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> SudokuCollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.sudokuCellIdentifier, forIndexPath: indexPath) as! SudokuCollectionViewCell
+        formatSudokuCell(cell, indexPath: indexPath)
+        self.sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell)
+        return cell
+    }
+    
+    private func refreshSudokuCollectionView() {
+        for indexPath in self.sudokuCollectionView.indexPathsForVisibleItems() {
+            let cell = self.sudokuCollectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
+            self.sudokuManager!.loadSudokuValueIntoCell(indexPath, cell: cell)
+        }
     }
     
 }

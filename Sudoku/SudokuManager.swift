@@ -13,24 +13,26 @@ public class SudokuManager {
     
     // MARK: Properties
     let sudokuDatabaseFileName = "SudokuDB"
+    let solutionDatabaseFileName = "SolutionDB"
     var sudokus: [Sudoku] = [Sudoku]()
     var activeSudoku: Sudoku?
     var format: SudokuFormat?
     var sudokuIndex: Int = 0
+    var solutions: [Sudoku] = [Sudoku]()
     
+    // MARK: Public Interface
     init!(format: SudokuFormat) {
         self.format = format
         loadSudokus()
+        loadSolutions()
     }
     
-    
-    // MARK: Public Interface
     /*
         Loads a textfile of sudokus into the app
         @param format The sudoku's format (i.e. rows and columns)
     */
     func loadSudokus() {
-        let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
+        let sudokuStringArray = readDB(self.sudokuDatabaseFileName).componentsSeparatedByString("\n")
         for sudoku in sudokuStringArray {
             sudokus.append(Sudoku(sudoku: sudoku, format: self.format!))
         }
@@ -39,6 +41,10 @@ public class SudokuManager {
         }
     }
     
+    /*
+        Sets the active sudoku from the loaded sudokus
+        @param index The index representing the sudoku to choose
+    */
     func setActiveSudoku(index: Int) -> Bool {
         if (index >= sudokus.count) {
             return false
@@ -47,6 +53,11 @@ public class SudokuManager {
         return true
     }
     
+    /*
+        Loads a sudoku value into a cell in the UI
+        @param indexPath The indexpath representing the cell
+        @param cell The cell itself
+    */
     func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: SudokuCollectionViewCell) {
         let row = indexPath.row / (activeSudoku?.format.rows)!
         let column = indexPath.row % (activeSudoku?.format.columns)!
@@ -61,11 +72,14 @@ public class SudokuManager {
         cell.value.text = ""
     }
     
-    func readSudokuDB() -> String {
-        let readError = "Could not read sudoku database"
+    /*
+        Reads a file and dumps its contents to a string
+        @param file The name of the file to read
+    */
+    func readDB(file: String) -> String {
+        let readError = "Could not read database"
         let ioError = "IO error reading database"
-        let path = NSBundle.mainBundle().pathForResource(sudokuDatabaseFileName, ofType: "")
-        
+        let path = NSBundle.mainBundle().pathForResource(file, ofType: "")
         do {
             if let fileContents: NSString = try NSString(contentsOfFile: path!, encoding: NSUTF8StringEncoding) {
                 return fileContents as String
@@ -92,9 +106,26 @@ public class SudokuManager {
         self.activeSudoku!.cells[rowIndex][columnIndex] = value
     }
     
+    /*
+        Resets the sudoku to its initial state
+    */
     func resetActiveSudoku() {
-        let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
+        let sudokuStringArray = readDB(self.sudokuDatabaseFileName).componentsSeparatedByString("\n")
         self.activeSudoku = Sudoku(sudoku: sudokuStringArray[self.sudokuIndex], format: self.format!)
     }
+    
+    /*
+        Solves the active sudoku
+    */
+    func solveActiveSudoku() {
+        self.activeSudoku = solutions[self.sudokuIndex]
+    }
 
+    // MARK: Private Interface
+    private func loadSolutions() {
+        let solutionStringArray = readDB(self.solutionDatabaseFileName).componentsSeparatedByString("\n")
+        for solution in solutionStringArray {
+            solutions.append(Sudoku(sudoku: solution, format: self.format!))
+        }
+    }
 }
