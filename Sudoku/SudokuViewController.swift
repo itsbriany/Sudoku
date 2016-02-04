@@ -13,6 +13,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var sudokuInputCollectionView: UICollectionView!
     @IBOutlet weak var sudokuCollectionView: UICollectionView!
+    @IBOutlet weak var gameStatus: UILabel!
     
     // MARK: Properties
     let cellRows = 9
@@ -24,6 +25,8 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     let selectedSudokuCollectionViewCellBorderColor = UIColor.yellowColor().CGColor
     let selectedSudokuCollectionViewCellBorderWidth: CGFloat = 3
     let sudokuCollectionViewCellBorderWidth: CGFloat = 1
+    let winText = "You did it!"
+    let loseText = "Nope, that's not it."
 
     var sudokuManager: SudokuManager?
     var selectedSudokuCell: SudokuCollectionViewCell?
@@ -78,14 +81,29 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         return customCellFrame(indexPath)
     }
     
+    // Click on an input cell
     @IBAction func updateSelection(sender: UIButton) {
         if ((self.selectedSudokuCell) != nil) {
             self.selectedSudokuCell?.value.text = sender.titleLabel?.text
+            // TODO update the data model with the selected value
+            //self.sudokuManager?.updateActiveSudoku(<#T##rowIndex: Int##Int#>, columnIndex: <#T##Int#>, value: <#T##Int#>)
             return
         }
     }
     
-
+    // Check the sudoku
+    @IBAction func checkSudoku(sender: UIButton) {
+        self.gameStatus.hidden = false
+        if (self.sudokuManager!.activeSudoku!.isSolved()) {
+            self.gameStatus.textColor = UIColor.greenColor()
+            self.gameStatus.text = self.winText;
+            return
+        }
+        self.gameStatus.textColor = UIColor.redColor()
+        self.gameStatus.text = self.loseText
+    }
+    
+    
     // MARK: Helpers
     func formatSudokuCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
         cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth

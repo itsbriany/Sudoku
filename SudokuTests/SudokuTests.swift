@@ -65,4 +65,36 @@ class SudokuTests: XCTestCase {
         XCTAssertFalse(sudoku.isSolved())
     }
     
+    func testUpdateSudoku() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
+        sudokuManager.updateActiveSudoku(0, columnIndex: 0, value: 9)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][0], 9)
+        sudokuManager.updateActiveSudoku(0, columnIndex: 1, value: 8)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][1], 8)
+        sudokuManager.updateActiveSudoku(8, columnIndex: 8, value: 7)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[8][8], 7)
+        
+        // The rows and columns exceed the format, so cells[8][8] will be updated instead
+        sudokuManager.updateActiveSudoku(100, columnIndex: 100, value: 6)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[8][8], 6)
+    }
+    
+    func testResetSudoku() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
+        
+        // Update the active sudoku
+        sudokuManager.updateActiveSudoku(0, columnIndex: 0, value: 9)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][0], 9)
+        sudokuManager.updateActiveSudoku(0, columnIndex: 1, value: 8)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][1], 8)
+        
+        // Reset the active sudoku
+        sudokuManager.resetActiveSudoku()
+        XCTAssertNotEqual(sudokuManager.activeSudoku?.cells[0][0], 9)
+        XCTAssertNotEqual(sudokuManager.activeSudoku?.cells[0][1], 8)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][0], 4)
+        XCTAssertEqual(sudokuManager.activeSudoku?.cells[0][1], 0)
+    }
 }

@@ -15,20 +15,27 @@ public class SudokuManager {
     let sudokuDatabaseFileName = "SudokuDB"
     var sudokus: [Sudoku] = [Sudoku]()
     var activeSudoku: Sudoku?
+    var format: SudokuFormat?
+    var sudokuIndex: Int = 0
     
     init!(format: SudokuFormat) {
-        loadSudokus(format)
+        self.format = format
+        loadSudokus()
     }
     
     
     // MARK: Public Interface
-    func loadSudokus(format: SudokuFormat) {
+    /*
+        Loads a textfile of sudokus into the app
+        @param format The sudoku's format (i.e. rows and columns)
+    */
+    func loadSudokus() {
         let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
         for sudoku in sudokuStringArray {
-            sudokus.append(Sudoku(sudoku: sudoku, format: format))
+            sudokus.append(Sudoku(sudoku: sudoku, format: self.format!))
         }
         if (!sudokus.isEmpty) {
-            setActiveSudoku(0)
+            setActiveSudoku(self.sudokuIndex)
         }
     }
     
@@ -69,5 +76,25 @@ public class SudokuManager {
         return readError
     }
     
+    /**
+        Updates the active sudoku using the selected row and column as an index
+        @param rowIndex The row index
+        @param columnIndex The column index
+        @param value The value to be inserted at activeSudoku[|rowIndex|][|columnIndex|]
+    */
+    func updateActiveSudoku(var rowIndex: Int, var columnIndex: Int, value: Int) {
+        if (rowIndex >= self.format!.rows) {
+            rowIndex = self.format!.rows - 1
+        }
+        if (columnIndex >= self.format!.columns) {
+            columnIndex = self.format!.columns - 1
+        }
+        self.activeSudoku!.cells[rowIndex][columnIndex] = value
+    }
+    
+    func resetActiveSudoku() {
+        let sudokuStringArray = readSudokuDB().componentsSeparatedByString("\n")
+        self.activeSudoku = Sudoku(sudoku: sudokuStringArray[self.sudokuIndex], format: self.format!)
+    }
 
 }

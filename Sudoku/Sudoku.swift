@@ -21,6 +21,9 @@ public class Sudoku {
     }
     
     // MARK: Public Interface
+    /*
+        Returns true if this sudoku is solved correctly
+    */
     func isSolved() -> Bool {
         for row in self.cells {
             if (!self.checkColumn(row)) {
