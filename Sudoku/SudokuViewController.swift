@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SudokuViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class SudokuViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var sudokuInputCollectionView: UICollectionView!

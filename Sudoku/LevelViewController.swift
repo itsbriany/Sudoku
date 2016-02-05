@@ -29,10 +29,13 @@ class LevelViewController: UICollectionViewController {
         return self.sudokuManager!.sudokus.count
     }
     
+    // Pass data to other view controllers via segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == self.selectLevelSegue {
-            if let destination = segue.destinationViewController as? SudokuViewController {
-                prepareSudokuView(destination)
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let destination = navigationController.topViewController as? SudokuViewController {
+                    prepareSudokuView(destination)
+                }
             }
         }
     }
@@ -41,7 +44,7 @@ class LevelViewController: UICollectionViewController {
     @IBAction func selectedLevel(sender: UIButton) {
         self.selectedSudokuLevel = Int(sender.titleLabel!.text!)! - 1
         print(self.selectedSudokuLevel)
-         performSegueWithIdentifier(self.selectLevelSegue, sender: self)
+        performSegueWithIdentifier(self.selectLevelSegue, sender: self)
     }
     
     // MARK: Private Interface
