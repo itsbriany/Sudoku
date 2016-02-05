@@ -13,6 +13,7 @@ class LevelViewController: UICollectionViewController {
     // MARK: Properties
     let cellIdentifier = "LevelCollectionViewCell"
     let selectLevelSegue = "SelectLevelSegue"
+    let homeSegue = "HomeSegue"
     var sudokuManager: SudokuManager?
     var selectedSudokuLevel: Int?
     
@@ -29,6 +30,7 @@ class LevelViewController: UICollectionViewController {
         return self.sudokuManager!.sudokus.count
     }
     
+    // MARK: Navigation
     // Pass data to other view controllers via segues
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == self.selectLevelSegue {
@@ -37,13 +39,18 @@ class LevelViewController: UICollectionViewController {
                     prepareSudokuView(destination)
                 }
             }
+        } else if segue.identifier == self.homeSegue {
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let destination = navigationController.topViewController as? HomeViewController {
+                    destination.sudokuManager = self.sudokuManager
+                }
+            }
         }
     }
     
     // MARK: User Actions
     @IBAction func selectedLevel(sender: UIButton) {
         self.selectedSudokuLevel = Int(sender.titleLabel!.text!)! - 1
-        print(self.selectedSudokuLevel)
         performSegueWithIdentifier(self.selectLevelSegue, sender: self)
     }
     
@@ -52,4 +59,5 @@ class LevelViewController: UICollectionViewController {
         destinationViewController.sudokuManager = self.sudokuManager
         destinationViewController.sudokuManager!.setActiveSudoku(self.selectedSudokuLevel!)
     }
+    
 }

@@ -19,6 +19,8 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     let inputButtons = 9
     let sudokuCellIdentifier = "SudokuCollectionViewCell"
     let sudokuButtonCellIdentifier = "SudokuButtonCollectionViewCell"
+    let levelSelectionSegue = "SelectLevelSegue"
+    let homeSegue = "HomeSegue"
     let sudokuCollectionViewCellBorderColor = UIColor.blackColor().CGColor
     let selectedSudokuCollectionViewCellBorderColor = UIColor.yellowColor().CGColor
     let selectedSudokuCollectionViewCellBorderWidth: CGFloat = 3
@@ -83,7 +85,8 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    @IBAction func checkSudoku(sender: UIButton) {
+    // MARK: User Actions
+    @IBAction func checkSudoku(sender: UIBarButtonItem) {
         self.gameStatus.hidden = false
         if (self.sudokuManager!.activeSudoku!.isSolved()) {
             self.gameStatus.textColor = UIColor.greenColor()
@@ -94,17 +97,32 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         self.gameStatus.text = self.loseText
     }
     
-    @IBAction func resetSudoku(sender: UIButton) {
+    @IBAction func resetSudoku(sender: UIBarButtonItem) {
         self.sudokuManager!.resetActiveSudoku()
         refreshSudokuCollectionView()
     }
-    
     
     @IBAction func solveSudoku(sender: AnyObject) {
         self.sudokuManager!.solveActiveSudoku()
         refreshSudokuCollectionView()
     }
     
+    // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == self.levelSelectionSegue {
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let destination = navigationController.topViewController as? LevelViewController {
+                    destination.sudokuManager = self.sudokuManager
+                }
+            }
+        } else if segue.identifier == self.homeSegue {
+            if let navigationController = segue.destinationViewController as? UINavigationController {
+                if let destination = navigationController.topViewController as? HomeViewController {
+                    destination.sudokuManager = self.sudokuManager
+                }
+            }
+        }
+    }
     
     // MARK: Helpers
     private func formatSudokuCell(cell: SudokuCollectionViewCell, indexPath: NSIndexPath) {
