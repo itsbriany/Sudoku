@@ -17,17 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-d5-oDi">
-                                <rect key="frame" x="102" y="397" width="171" height="51"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="Level Select">
-                                    <color key="titleColor" red="0.99832036639999999" green="1" blue="0.96784105109999996" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BK4-ej-Z8w" kind="show" id="2bm-vo-UNE"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAO-9u-fGg">
                                 <rect key="frame" x="153" y="220" width="68" height="51"/>
                                 <animations/>
@@ -37,6 +26,17 @@
                                 </state>
                                 <connections>
                                     <segue destination="W7m-gs-OKf" kind="show" id="Xs7-bn-5ge"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-d5-oDi">
+                                <rect key="frame" x="102" y="397" width="171" height="51"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Level Select">
+                                    <color key="titleColor" red="0.99832036639999999" green="1" blue="0.96784105109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BK4-ej-Z8w" kind="show" identifier="SelectLevelSegue" id="btp-Pm-pvP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -92,6 +92,9 @@
                                 </view>
                                 <animations/>
                                 <color key="backgroundColor" red="0.83833606199999999" green="1" blue="0.99667064409999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="level" destination="w3x-p4-ivi" id="Cim-JI-IBH"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -102,7 +105,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMS-XX-CFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365.5" y="1225.5"/>
+            <point key="canvasLocation" x="1344" y="1055"/>
         </scene>
         <!--Sudoku View Controller-->
         <scene sceneID="gao-4b-SJU">

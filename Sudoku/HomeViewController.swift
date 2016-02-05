@@ -10,9 +10,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var sudokuManager: SudokuManager?
+    let format = SudokuFormat(rows: 9, columns: 9)
+    let selectLevelSegue = "SelectLevelSegue"
+    
+    // Trigger action that navigates to level selection
+    @IBAction func selectLevel(sender: UIButton) {
+        self.performSegueWithIdentifier(self.selectLevelSegue, sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        sudokuManager = SudokuManager(format: self.format)
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +29,12 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    // Pass data to the destination view controller
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == self.selectLevelSegue {
+            if let destination = segue.destinationViewController as? LevelViewController {
+                destination.sudokuManager = self.sudokuManager
+            }
+        }
+    }
 }
-

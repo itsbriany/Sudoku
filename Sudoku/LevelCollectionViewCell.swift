@@ -9,6 +9,9 @@
 import UIKit
 
 class LevelCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var level: UIButton!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         layer.borderWidth = 1

@@ -86,7 +86,6 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    // Check the sudoku
     @IBAction func checkSudoku(sender: UIButton) {
         self.gameStatus.hidden = false
         if (self.sudokuManager!.activeSudoku!.isSolved()) {
