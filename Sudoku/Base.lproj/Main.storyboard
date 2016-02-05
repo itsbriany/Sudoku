@@ -17,8 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-d5-oDi">
+                                <rect key="frame" x="102" y="397" width="171" height="51"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Level Select">
+                                    <color key="titleColor" red="0.99832036639999999" green="1" blue="0.96784105109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BK4-ej-Z8w" kind="show" id="2bm-vo-UNE"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAO-9u-fGg">
-                                <rect key="frame" x="153" y="308" width="68" height="51"/>
+                                <rect key="frame" x="153" y="220" width="68" height="51"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Start">
@@ -32,8 +43,10 @@
                         <animations/>
                         <color key="backgroundColor" red="0.304071117" green="0.49216455799999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WnS-kh-0pi"/>
-                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oc6-6z-Sb0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Edx-d5-oDi" secondAttribute="bottom" constant="219" id="0hV-hu-fpe"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="156" id="5Xm-fZ-kSv"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="Edx-d5-oDi" secondAttribute="centerX" id="7pv-St-HYE"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZRw-IK-vbi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sudoku Home" id="r2m-3c-wtA"/>
@@ -41,7 +54,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1186.5" y="308.5"/>
+            <point key="canvasLocation" x="1027.5" y="298.5"/>
+        </scene>
+        <!--Level View Controller-->
+        <scene sceneID="q3I-hQ-Eev">
+            <objects>
+                <collectionViewController id="BK4-ej-Z8w" customClass="LevelViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hb7-Jg-BPt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.304071117" green="0.49216455799999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wQl-Y8-tt1">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelCollectionViewCell" id="sTN-YH-hzY" customClass="LevelCollectionViewCell" customModule="Sudoku" customModuleProvider="target">
+                                <rect key="frame" x="10" y="74" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3x-p4-ivi">
+                                            <rect key="frame" x="2" y="10" width="46" height="30"/>
+                                            <animations/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <color key="backgroundColor" red="0.83833606199999999" green="1" blue="0.99667064409999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="BK4-ej-Z8w" id="bsI-f6-zTJ"/>
+                            <outlet property="delegate" destination="BK4-ej-Z8w" id="aQ1-Yy-yCE"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMS-XX-CFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1365.5" y="1225.5"/>
         </scene>
         <!--Sudoku View Controller-->
         <scene sceneID="gao-4b-SJU">

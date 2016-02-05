@@ -57,19 +57,23 @@ public class SudokuManager {
         Loads a sudoku value into a cell in the UI
         @param indexPath The indexpath representing the cell
         @param cell The cell itself
+        @param firstLoad This should be true if this is the first time loading the numbers into the cells
     */
-    func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: SudokuCollectionViewCell) {
+    func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: SudokuCollectionViewCell, firstLoad: Bool) {
         let row = indexPath.row / (activeSudoku?.format.rows)!
         let column = indexPath.row % (activeSudoku?.format.columns)!
         let cellValue = String(activeSudoku!.cells[row][column])
-        if (cellValue != "0") {
+        if (cellValue == "0") {
+            cell.value.text = ""
+        } else if (cellValue != "0" && firstLoad) {
             cell.value.text = cellValue
             cell.value.font = UIFont.boldSystemFontOfSize(17.0)
             cell.layer.borderWidth = 2.0
             cell.userInteractionEnabled = false
-            return
+        } else {
+            cell.value.text = cellValue
+
         }
-        cell.value.text = ""
     }
     
     /*

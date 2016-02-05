@@ -157,14 +157,14 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     private func loadSudokuCollectionViewCell(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> SudokuCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.sudokuCellIdentifier, forIndexPath: indexPath) as! SudokuCollectionViewCell
         formatSudokuCell(cell, indexPath: indexPath)
-        self.sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell)
+        self.sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell, firstLoad: true)
         return cell
     }
     
     private func refreshSudokuCollectionView() {
         for indexPath in self.sudokuCollectionView.indexPathsForVisibleItems() {
             let cell = self.sudokuCollectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
-            self.sudokuManager!.loadSudokuValueIntoCell(indexPath, cell: cell)
+            self.sudokuManager!.loadSudokuValueIntoCell(indexPath, cell: cell, firstLoad: false)
         }
     }
     
