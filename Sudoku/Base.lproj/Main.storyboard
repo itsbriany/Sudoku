@@ -25,7 +25,7 @@
                                     <color key="titleColor" red="0.99832036639999999" green="1" blue="0.96784105109999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="W7m-gs-OKf" kind="show" id="Xs7-bn-5ge"/>
+                                    <segue destination="W7m-gs-OKf" kind="show" identifier="StartSudokuSegue" id="Xs7-bn-5ge"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-d5-oDi">
@@ -85,6 +85,9 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="selectedLevel:" destination="BK4-ej-Z8w" eventType="touchUpInside" id="9XI-qJ-0nw"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <animations/>
@@ -102,10 +105,13 @@
                             <outlet property="delegate" destination="BK4-ej-Z8w" id="aQ1-Yy-yCE"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <segue destination="W7m-gs-OKf" kind="show" identifier="SelectLevelSegue" id="Jpo-xE-9mc"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMS-XX-CFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="1055"/>
+            <point key="canvasLocation" x="1261.5" y="1237.5"/>
         </scene>
         <!--Sudoku View Controller-->
         <scene sceneID="gao-4b-SJU">
@@ -288,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYf-oF-KOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682.5" y="298.5"/>
+            <point key="canvasLocation" x="1865.5" y="317.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zeF-2k-h33">
@@ -310,4 +316,7 @@
             <point key="canvasLocation" x="374" y="308"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jpo-xE-9mc"/>
+    </inferredMetricsTieBreakers>
 </document>

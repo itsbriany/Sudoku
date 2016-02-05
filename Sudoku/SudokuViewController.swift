@@ -16,8 +16,6 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var gameStatus: UILabel!
     
     // MARK: Properties
-    let cellRows = 9
-    let cellColumns = 9
     let inputButtons = 9
     let sudokuCellIdentifier = "SudokuCollectionViewCell"
     let sudokuButtonCellIdentifier = "SudokuButtonCollectionViewCell"
@@ -34,7 +32,6 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
-        sudokuManager = SudokuManager(format: SudokuFormat(rows: self.cellRows, columns: self.cellColumns))
     }
     
     // Cell count
@@ -127,12 +124,12 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     private func customCellFrame(indexPath: NSIndexPath) -> CGSize {
         let screenSize = sudokuCollectionView.bounds
-        let cellSize = screenSize.width / (CGFloat(cellColumns) + 3) // +3 to make up for padding and margins
+        let cellSize = screenSize.width / (CGFloat(self.sudokuManager!.format!.columns) + 3) // +3 to make up for padding and margins
         return CGSize(width: cellSize, height: cellSize)
     }
     
     private func getSudokuCollectionViewCells() -> [SudokuCollectionViewCell!] {
-        let sudokuCollectionViewCells = [SudokuCollectionViewCell!](count: (cellRows * cellColumns), repeatedValue: nil)
+        let sudokuCollectionViewCells = [SudokuCollectionViewCell!](count: self.sudokuManager!.format!.rows * self.sudokuManager!.format!.columns, repeatedValue: nil)
         return sudokuCollectionViewCells
     }
     

@@ -12,7 +12,9 @@ class LevelViewController: UICollectionViewController {
 
     // MARK: Properties
     let cellIdentifier = "LevelCollectionViewCell"
+    let selectLevelSegue = "SelectLevelSegue"
     var sudokuManager: SudokuManager?
+    var selectedSudokuLevel: Int?
     
     // MARK: Overrides
     // Define cells
@@ -25,5 +27,26 @@ class LevelViewController: UICollectionViewController {
     // How many cells?
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.sudokuManager!.sudokus.count
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == self.selectLevelSegue {
+            if let destination = segue.destinationViewController as? SudokuViewController {
+                prepareSudokuView(destination)
+            }
+        }
+    }
+    
+    // MARK: User Actions
+    @IBAction func selectedLevel(sender: UIButton) {
+        self.selectedSudokuLevel = Int(sender.titleLabel!.text!)! - 1
+        print(self.selectedSudokuLevel)
+         performSegueWithIdentifier(self.selectLevelSegue, sender: self)
+    }
+    
+    // MARK: Private Interface
+    private func prepareSudokuView(destinationViewController: SudokuViewController) {
+        destinationViewController.sudokuManager = self.sudokuManager
+        destinationViewController.sudokuManager!.setActiveSudoku(self.selectedSudokuLevel!)
     }
 }

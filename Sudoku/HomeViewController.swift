@@ -13,11 +13,12 @@ class HomeViewController: UIViewController {
     var sudokuManager: SudokuManager?
     let format = SudokuFormat(rows: 9, columns: 9)
     let selectLevelSegue = "SelectLevelSegue"
+    let startSudokuSegue = "StartSudokuSegue"
     
     // Trigger action that navigates to level selection
-    @IBAction func selectLevel(sender: UIButton) {
-        self.performSegueWithIdentifier(self.selectLevelSegue, sender: self)
-    }
+//    @IBAction func selectLevel(sender: UIButton) {
+//        self.performSegueWithIdentifier(self.selectLevelSegue, sender: self)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,10 @@ class HomeViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == self.selectLevelSegue {
             if let destination = segue.destinationViewController as? LevelViewController {
+                destination.sudokuManager = self.sudokuManager
+            }
+        } else if segue.identifier == self.startSudokuSegue {
+            if let destination = segue.destinationViewController as? SudokuViewController {
                 destination.sudokuManager = self.sudokuManager
             }
         }
