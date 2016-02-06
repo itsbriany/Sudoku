@@ -19,6 +19,7 @@ public class SudokuManager {
     var format: SudokuFormat?
     var sudokuIndex: Int = 0
     var solutions: [Sudoku] = [Sudoku]()
+    var updatedLevel: Bool = false
     
     // MARK: Public Interface
     init!(format: SudokuFormat) {
@@ -58,7 +59,7 @@ public class SudokuManager {
         Loads a sudoku value into a cell in the UI
         @param indexPath The indexpath representing the cell
         @param cell The cell itself
-        @param firstLoad This should be true if this is the first time loading the numbers into the cells
+        @param isDifferentLevel This should be true if this is the first time loading the numbers into the cells
     */
     func loadSudokuValueIntoCell(indexPath: NSIndexPath, cell: SudokuCollectionViewCell, firstLoad: Bool) {
         let row = indexPath.row / (activeSudoku?.format.rows)!

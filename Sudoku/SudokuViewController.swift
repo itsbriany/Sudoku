@@ -124,6 +124,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         } else if segue.identifier == self.homeSegue {
             if let navigationController = segue.destinationViewController as? UINavigationController {
                 if let destination = navigationController.topViewController as? HomeViewController {
+                    self.sudokuManager!.resetActiveSudoku()
                     destination.sudokuManager = self.sudokuManager
                 }
             }
@@ -177,7 +178,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     private func loadSudokuCollectionViewCell(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> SudokuCollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.sudokuCellIdentifier, forIndexPath: indexPath) as! SudokuCollectionViewCell
         formatSudokuCell(cell, indexPath: indexPath)
-        self.sudokuManager?.loadSudokuValueIntoCell(indexPath, cell: cell, firstLoad: true)
+        self.sudokuManager!.loadSudokuValueIntoCell(indexPath, cell: cell, firstLoad: true)
         return cell
     }
     
