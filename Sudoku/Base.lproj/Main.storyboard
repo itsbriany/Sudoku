@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cxh-gK-ivB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="cxh-gK-ivB">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -14,23 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAO-9u-fGg">
-                                <rect key="frame" x="153" y="220" width="68" height="51"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <state key="normal" title="Start">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="AeQ-vD-uTP" kind="presentation" identifier="StartSudokuSegue" id="H8m-rk-z8x"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edx-d5-oDi">
-                                <rect key="frame" x="102" y="397" width="171" height="51"/>
-                                <animations/>
+                                <rect key="frame" x="215" y="351" width="171" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Level Select">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,18 +27,26 @@
                                     <segue destination="Mf9-3L-7ZR" kind="presentation" identifier="SelectLevelSegue" id="btp-Pm-pvP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAO-9u-fGg">
+                                <rect key="frame" x="266" y="203" width="68" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AeQ-vD-uTP" kind="presentation" identifier="StartSudokuSegue" id="H8m-rk-z8x"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.6434365611821562" green="0.84563123026876552" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92026183536064132" green="1" blue="0.99656120143005178" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Edx-d5-oDi" secondAttribute="bottom" constant="219" id="0hV-hu-fpe"/>
-                            <constraint firstItem="KAO-9u-fGg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="156" id="5Xm-fZ-kSv"/>
-                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="Edx-d5-oDi" secondAttribute="centerX" id="7pv-St-HYE"/>
-                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZRw-IK-vbi"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="Edx-d5-oDi" secondAttribute="centerX" id="M9N-iQ-TZb"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zi0-Ck-kJL"/>
+                            <constraint firstItem="Edx-d5-oDi" firstAttribute="top" secondItem="KAO-9u-fGg" secondAttribute="bottom" constant="97" id="kfR-oH-dU2"/>
+                            <constraint firstItem="KAO-9u-fGg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="139" id="xSd-sB-lAz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sudoku Home" id="r2m-3c-wtA"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,10 +57,9 @@
             <objects>
                 <collectionViewController id="BK4-ej-Z8w" customClass="LevelViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hb7-Jg-BPt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.64343656120000003" green="0.84563123029999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92026183539999995" green="1" blue="0.99656120140000004" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wQl-Y8-tt1">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -81,7 +76,6 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3x-p4-ivi">
                                             <rect key="frame" x="2" y="10" width="46" height="30"/>
-                                            <animations/>
                                             <state key="normal" title="Button">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -90,10 +84,8 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                                 <color key="backgroundColor" red="0.304071117" green="0.49216455799999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="level" destination="w3x-p4-ivi" id="Cim-JI-IBH"/>
@@ -118,9 +110,9 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMS-XX-CFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729.5" y="1446.5"/>
+            <point key="canvasLocation" x="1843" y="1454"/>
         </scene>
-        <!--Sudoku-->
+        <!--Level 1-->
         <scene sceneID="gao-4b-SJU">
             <objects>
                 <viewController id="W7m-gs-OKf" customClass="SudokuViewController" customModule="Sudoku" customModuleProvider="target" sceneMemberID="viewController">
@@ -129,100 +121,43 @@
                         <viewControllerLayoutGuide type="bottom" id="rtg-5e-zZ2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="dvq-Hf-eDR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sdt-uv-VK3">
-                                <rect key="frame" x="8" y="519" width="359" height="128"/>
-                                <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-ao-2DI">
-                                        <rect key="frame" x="8" y="39" width="343" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C6d-zC-lIV">
-                                        <rect key="frame" x="-8" y="90" width="375" height="44"/>
-                                        <animations/>
-                                        <items>
-                                            <barButtonItem style="plain" systemItem="fixedSpace" id="PGC-tD-V6J"/>
-                                            <barButtonItem title="Solve" id="cuZ-xM-5un">
-                                                <connections>
-                                                    <action selector="solveSudoku:" destination="W7m-gs-OKf" id="bbg-zG-x3P"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem width="70" style="plain" systemItem="fixedSpace" id="3mI-1c-0m9"/>
-                                            <barButtonItem title="Check Answer" id="TOw-BH-ktU">
-                                                <connections>
-                                                    <action selector="checkSudoku:" destination="W7m-gs-OKf" id="W53-VV-O4X"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem width="52" style="plain" systemItem="fixedSpace" id="P7e-vc-BBp"/>
-                                            <barButtonItem title="Reset" id="09d-UH-vmY">
-                                                <connections>
-                                                    <action selector="resetSudoku:" destination="W7m-gs-OKf" id="TX0-yU-lL6"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </items>
-                                    </toolbar>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" red="0.64343656120000003" green="0.84563123029999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O8o-z3-3Eo">
-                                <rect key="frame" x="8" y="458" width="359" height="52"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.64343656120000003" green="0.84563123029999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="SMl-Is-iLM">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SudokuButtonCollectionViewCell" id="5FP-Fc-qKQ" customClass="SudokuButtonCollectionViewCell" customModule="Sudoku" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLR-a9-wL7">
-                                                    <rect key="frame" x="2" y="10" width="46" height="30"/>
-                                                    <animations/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="updateSelection:" destination="W7m-gs-OKf" eventType="touchUpInside" id="Qcy-7i-NrW"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <animations/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="mLR-a9-wL7" firstAttribute="centerY" secondItem="5FP-Fc-qKQ" secondAttribute="centerY" id="YwM-9i-Br7"/>
-                                            <constraint firstItem="mLR-a9-wL7" firstAttribute="centerX" secondItem="5FP-Fc-qKQ" secondAttribute="centerX" id="c0H-Jt-Pb0"/>
-                                        </constraints>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUE-ao-2DI">
+                                <rect key="frame" x="0.0" y="506" width="600" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="b5t-Rz-kPT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C6d-zC-lIV">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Solve" id="cuZ-xM-5un">
                                         <connections>
-                                            <outlet property="value" destination="mLR-a9-wL7" id="JdU-rg-v6c"/>
+                                            <action selector="solveSudoku:" destination="W7m-gs-OKf" id="bbg-zG-x3P"/>
                                         </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="W7m-gs-OKf" id="3Mw-yK-zbD"/>
-                                    <outlet property="delegate" destination="W7m-gs-OKf" id="oxQ-Hf-TpQ"/>
-                                </connections>
-                            </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="6" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SiO-sE-UUz">
-                                <rect key="frame" x="8" y="72" width="359" height="378"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.64343656120000003" green="0.84563123029999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A77-GE-R2v"/>
+                                    <barButtonItem title="Check Answer" id="TOw-BH-ktU">
+                                        <connections>
+                                            <action selector="checkSudoku:" destination="W7m-gs-OKf" id="W53-VV-O4X"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MSf-2u-XEG"/>
+                                    <barButtonItem title="Reset" id="09d-UH-vmY">
+                                        <connections>
+                                            <action selector="resetSudoku:" destination="W7m-gs-OKf" id="TX0-yU-lL6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SiO-sE-UUz">
+                                <rect key="frame" x="0.0" y="64" width="600" height="359"/>
+                                <color key="backgroundColor" red="0.92026183539999995" green="1" blue="0.99656120140000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Wek-cs-5yE">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -239,17 +174,14 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCr-9b-WtY">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <animations/>
                                                     <color key="backgroundColor" red="0.304071117" green="0.49216455799999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.23348847517730498" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="eCr-9b-WtY" secondAttribute="trailing" id="95J-vn-Shj"/>
@@ -267,34 +199,96 @@
                                     <outlet property="delegate" destination="W7m-gs-OKf" id="UHA-v1-IE0"/>
                                 </connections>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O8o-z3-3Eo">
+                                <rect key="frame" x="0.0" y="431" width="600" height="67"/>
+                                <color key="backgroundColor" red="0.92026183539999995" green="1" blue="0.99656120140000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="guO-In-gpG"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="SMl-Is-iLM">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SudokuButtonCollectionViewCell" id="5FP-Fc-qKQ" customClass="SudokuButtonCollectionViewCell" customModule="Sudoku" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLR-a9-wL7">
+                                                    <rect key="frame" x="2" y="10" width="46" height="30"/>
+                                                    <state key="normal" title="Button">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="updateSelection:" destination="W7m-gs-OKf" eventType="touchUpInside" id="Qcy-7i-NrW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.028078071964938167" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="mLR-a9-wL7" firstAttribute="centerY" secondItem="5FP-Fc-qKQ" secondAttribute="centerY" id="YwM-9i-Br7"/>
+                                            <constraint firstItem="mLR-a9-wL7" firstAttribute="centerX" secondItem="5FP-Fc-qKQ" secondAttribute="centerX" id="c0H-Jt-Pb0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="value" destination="mLR-a9-wL7" id="JdU-rg-v6c"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="W7m-gs-OKf" id="3Mw-yK-zbD"/>
+                                    <outlet property="delegate" destination="W7m-gs-OKf" id="oxQ-Hf-TpQ"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" red="0.64343656120000003" green="0.84563123029999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.92026183539999995" green="1" blue="0.99656120140000004" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="O8o-z3-3Eo" firstAttribute="leading" secondItem="SiO-sE-UUz" secondAttribute="leading" id="2pB-mh-RNT"/>
+                            <constraint firstItem="O8o-z3-3Eo" firstAttribute="trailing" secondItem="jUE-ao-2DI" secondAttribute="trailing" id="8hs-Tu-jlg"/>
+                            <constraint firstItem="SiO-sE-UUz" firstAttribute="top" secondItem="AUa-rV-VDP" secondAttribute="bottom" id="9T0-uj-xfL"/>
+                            <constraint firstItem="C6d-zC-lIV" firstAttribute="bottom" secondItem="rtg-5e-zZ2" secondAttribute="top" id="FGn-la-e1e"/>
+                            <constraint firstItem="C6d-zC-lIV" firstAttribute="leading" secondItem="dvq-Hf-eDR" secondAttribute="leading" id="KFB-EM-7KH"/>
+                            <constraint firstItem="C6d-zC-lIV" firstAttribute="leading" secondItem="jUE-ao-2DI" secondAttribute="leading" id="KxW-vt-oIo"/>
+                            <constraint firstItem="C6d-zC-lIV" firstAttribute="top" secondItem="jUE-ao-2DI" secondAttribute="bottom" constant="27" id="P0a-PE-Gmg"/>
+                            <constraint firstAttribute="trailing" secondItem="jUE-ao-2DI" secondAttribute="trailing" id="Pxt-Db-PKW"/>
+                            <constraint firstItem="O8o-z3-3Eo" firstAttribute="top" secondItem="SiO-sE-UUz" secondAttribute="bottom" constant="8" symbolic="YES" id="U3L-vh-5at"/>
+                            <constraint firstItem="jUE-ao-2DI" firstAttribute="trailing" secondItem="C6d-zC-lIV" secondAttribute="trailing" id="UnQ-Fm-JAl"/>
+                            <constraint firstItem="O8o-z3-3Eo" firstAttribute="trailing" secondItem="SiO-sE-UUz" secondAttribute="trailing" id="WUO-Wt-G1J"/>
+                            <constraint firstItem="jUE-ao-2DI" firstAttribute="leading" secondItem="O8o-z3-3Eo" secondAttribute="leading" id="fwA-sB-oUh"/>
+                            <constraint firstItem="jUE-ao-2DI" firstAttribute="top" secondItem="O8o-z3-3Eo" secondAttribute="bottom" constant="8" symbolic="YES" id="o7g-dH-Abj"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sudoku" id="50a-Jt-6f0">
+                    <navigationItem key="navigationItem" title="Level 1" id="50a-Jt-6f0">
                         <barButtonItem key="leftBarButtonItem" title="Home" id="Koo-fK-uIy">
                             <connections>
                                 <segue destination="cxh-gK-ivB" kind="presentation" identifier="HomeSegue" id="qyG-M2-25j"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Level Selection" id="U70-4q-8QX">
+                        <barButtonItem key="rightBarButtonItem" title="Levels" id="U70-4q-8QX">
                             <connections>
                                 <segue destination="Mf9-3L-7ZR" kind="presentation" identifier="SelectLevelSegue" id="WFY-0F-SRd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="gameStatus" destination="jUE-ao-2DI" id="kN1-fD-kwl"/>
                         <outlet property="mainView" destination="dvq-Hf-eDR" id="bTD-5u-FqD"/>
                         <outlet property="sudokuCollectionView" destination="SiO-sE-UUz" id="Na5-WZ-XAh"/>
                         <outlet property="sudokuInputCollectionView" destination="O8o-z3-3Eo" id="lKg-EP-eYc"/>
+                        <outlet property="sudokuLevel" destination="50a-Jt-6f0" id="wyX-eW-jr2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYf-oF-KOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2811.5" y="-810.5"/>
+            <point key="canvasLocation" x="2811" y="-811"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zeF-2k-h33">
@@ -304,7 +298,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X6R-AZ-kUd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -323,7 +316,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EtK-Nf-xdc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -342,7 +334,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="v5M-gB-oF7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -356,7 +347,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="WFY-0F-SRd"/>
-        <segue reference="VJJ-zy-Voz"/>
+        <segue reference="H8m-rk-z8x"/>
         <segue reference="qyG-M2-25j"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -117,5 +117,24 @@ class SudokuTests: XCTestCase {
         
         sudokuManager.solveActiveSudoku()
         XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
+        
+        sudokuManager.setActiveSudoku(14)
+        sudokuManager.solveActiveSudoku()
+        XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
+        sudokuManager.activeSudoku?.cells[8][5] = 6
+        XCTAssertFalse(sudokuManager.activeSudoku!.isSolved())
+        sudokuManager.solveActiveSudoku()
+        XCTAssertTrue(sudokuManager.activeSudoku!.isSolved())
+    }
+    
+    func testSetActiveSudoku() {
+        let format = SudokuFormat(rows: 9, columns: 9)
+        let sudokuManager: SudokuManager = SudokuManager(format: format)
+        var firstRow: [Int] = [4, 0, 0, 0, 3, 0, 0, 0, 0]
+        XCTAssertEqual(sudokuManager.activeSudoku!.cells[0], firstRow)
+        
+        sudokuManager.setActiveSudoku(15)
+        firstRow = [7, 0, 8, 0, 0, 0, 3, 0, 0]
+        XCTAssertEqual(sudokuManager.activeSudoku!.cells[0], firstRow)
     }
 }

@@ -8,16 +8,30 @@
 
 import Foundation
 
-public class Sudoku {
+public class Sudoku: NSCopying {
     
     // MARK: Properties
     var format: SudokuFormat
     var cells: [[Int]]
+    var selectableCells: [[Bool]]
+    
+    // Copy constructor
+    init(sudoku: Sudoku) {
+        self.format = sudoku.format
+        self.cells = sudoku.cells
+        self.selectableCells = sudoku.selectableCells
+    }
     
     init!(sudoku: String, format: SudokuFormat) {
         self.format = format
         self.cells = [[Int]](count: format.rows, repeatedValue: [Int](count: format.columns, repeatedValue: 0))
+        self.selectableCells = [[Bool]](count: format.rows, repeatedValue: [Bool](count: format.columns, repeatedValue: true))
         mapValues(sudoku)
+    }
+    
+    // MARK: NSCopying Implementation
+    @objc public func copyWithZone(zone: NSZone) -> AnyObject {
+        return Sudoku(sudoku: self)
     }
     
     // MARK: Public Interface
@@ -57,14 +71,14 @@ public class Sudoku {
     }
     
     private func checkColumn(row: [Int]) -> Bool {
-        var current: Int = 1
+        var current: Int = 0
         var unsortedColumn: [Int] = [Int]()
         for value in row {
             unsortedColumn.append(value)
         }
         let sortedColumn = unsortedColumn.sort(sortIntegers)
         for value in sortedColumn {
-            if (value < current) {
+            if (value != current + 1) {
                 return false
             }
             current++
@@ -73,10 +87,10 @@ public class Sudoku {
     }
     
     private func checkRow(row: [Int]) -> Bool {
-        var current = 1
+        var current = 0
         let sortedRow = row.sort(sortIntegers)
         for value in sortedRow {
-            if (value < current) {
+            if (value != current + 1) {
                 return false
             }
             current++

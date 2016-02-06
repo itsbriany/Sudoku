@@ -49,7 +49,8 @@ public class SudokuManager {
         if (index >= sudokus.count) {
             return false
         }
-        activeSudoku = sudokus[index]
+        self.sudokuIndex = index
+        activeSudoku = sudokus[self.sudokuIndex]
         return true
     }
     
@@ -66,13 +67,16 @@ public class SudokuManager {
         if (cellValue == "0") {
             cell.value.text = ""
         } else if (cellValue != "0" && firstLoad) {
+            cell.value.alpha = 0
             cell.value.text = cellValue
             cell.value.font = UIFont.boldSystemFontOfSize(17.0)
             cell.layer.borderWidth = 2.0
             cell.userInteractionEnabled = false
+            fadeInCell(cell)
         } else {
+            cell.value.alpha = 0
             cell.value.text = cellValue
-
+            fadeInCell(cell)
         }
     }
     
@@ -122,7 +126,18 @@ public class SudokuManager {
         Solves the active sudoku
     */
     func solveActiveSudoku() {
-        self.activeSudoku = solutions[self.sudokuIndex]
+        // self.activeSudoku = solutions[self.sudokuIndex]
+        // Copy array by value so that the solutions do not get modified
+        self.activeSudoku = solutions[self.sudokuIndex].copyWithZone(nil) as? Sudoku
+    }
+    
+    /*
+        Fade in animation for a SudokuCollectionViewCell
+    */
+    func fadeInCell(cell: SudokuCollectionViewCell) {
+        UIView.animateWithDuration(0.50, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            cell.value.alpha = 1.0
+            }, completion: nil)
     }
 
     // MARK: Private Interface

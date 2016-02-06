@@ -10,12 +10,13 @@ import UIKit
 
 class SudokuViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
+    // MARK: Properties
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var sudokuInputCollectionView: UICollectionView!
     @IBOutlet weak var sudokuCollectionView: UICollectionView!
     @IBOutlet weak var gameStatus: UILabel!
+    @IBOutlet weak var sudokuLevel: UINavigationItem!
     
-    // MARK: Properties
     let inputButtons = 9
     let sudokuCellIdentifier = "SudokuCollectionViewCell"
     let sudokuButtonCellIdentifier = "SudokuButtonCollectionViewCell"
@@ -24,9 +25,10 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     let sudokuCollectionViewCellBorderColor = UIColor.blackColor().CGColor
     let selectedSudokuCollectionViewCellBorderColor = UIColor.yellowColor().CGColor
     let selectedSudokuCollectionViewCellBorderWidth: CGFloat = 3
+    let inputSudokuCollectionViewCellBorderWidth: CGFloat = 2
     let sudokuCollectionViewCellBorderWidth: CGFloat = 1
-    let winText = "You did it!"
-    let loseText = "Nope, that's not it."
+    let winText = "You did it! 👍"
+    let loseText = "Nope, that's not it. ¯\\_(ツ)_/¯"
 
     var sudokuManager: SudokuManager?
     var selectedSudokuCell: SudokuCollectionViewCell?
@@ -34,6 +36,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Initialization
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.sudokuLevel.title = "Level " + String(self.sudokuManager!.sudokuIndex + 1)
     }
     
     // Cell count
@@ -75,7 +78,9 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // Click on an input cell
     @IBAction func updateSelection(sender: UIButton) {
         if ((self.selectedSudokuCell) != nil) {
-            self.selectedSudokuCell?.value.text = sender.titleLabel?.text
+            self.selectedSudokuCell!.value.text = sender.titleLabel?.text
+            self.selectedSudokuCell!.value.alpha = 0
+            self.sudokuManager!.fadeInCell(self.selectedSudokuCell!)
             let index = self.sudokuCollectionView.indexPathForCell(self.selectedSudokuCell!)
             let row = index!.row / sudokuManager!.format!.rows
             let column = index!.row % sudokuManager!.format!.columns
@@ -88,8 +93,9 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: User Actions
     @IBAction func checkSudoku(sender: UIBarButtonItem) {
         self.gameStatus.hidden = false
+        flipGameStatus()
         if (self.sudokuManager!.activeSudoku!.isSolved()) {
-            self.gameStatus.textColor = UIColor.greenColor()
+            self.gameStatus.textColor = UIColor.blueColor()
             self.gameStatus.text = self.winText;
             return
         }
@@ -133,7 +139,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     private func formatInputCell(cell: SudokuButtonCollectionViewCell, indexPath: NSIndexPath) {
-        cell.layer.borderWidth = self.sudokuCollectionViewCellBorderWidth
+        cell.layer.borderWidth = self.inputSudokuCollectionViewCellBorderWidth
         cell.layer.borderColor = self.sudokuCollectionViewCellBorderColor
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 3;
@@ -180,6 +186,14 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
             let cell = self.sudokuCollectionView.cellForItemAtIndexPath(indexPath) as! SudokuCollectionViewCell
             self.sudokuManager!.loadSudokuValueIntoCell(indexPath, cell: cell, firstLoad: false)
         }
+    }
+    
+    private func flipGameStatus() {
+        UIView.transitionWithView(self.gameStatus, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: {
+            () -> Void in
+            }, completion: {
+                (success) -> Void in
+        })
     }
     
 }
