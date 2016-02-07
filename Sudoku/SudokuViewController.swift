@@ -75,6 +75,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         return customCellFrame(indexPath)
     }
     
+    // MARK: User Actions
     // Click on an input cell
     @IBAction func updateSelection(sender: UIButton) {
         if ((self.selectedSudokuCell) != nil) {
@@ -90,10 +91,9 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    // MARK: User Actions
     @IBAction func checkSudoku(sender: UIBarButtonItem) {
         self.gameStatus.hidden = false
-        flipGameStatus()
+        flipGameStatusLabel()
         if (self.sudokuManager!.activeSudoku!.isSolved()) {
             self.gameStatus.textColor = UIColor.blueColor()
             self.gameStatus.text = self.winText;
@@ -118,6 +118,7 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         if segue.identifier == self.levelSelectionSegue {
             if let navigationController = segue.destinationViewController as? UINavigationController {
                 if let destination = navigationController.topViewController as? LevelViewController {
+                    self.sudokuManager!.resetActiveSudoku()
                     destination.sudokuManager = self.sudokuManager
                 }
             }
@@ -189,12 +190,11 @@ class SudokuViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
     
-    private func flipGameStatus() {
+    private func flipGameStatusLabel() {
         UIView.transitionWithView(self.gameStatus, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: {
             () -> Void in
             }, completion: {
                 (success) -> Void in
         })
     }
-    
 }

@@ -9,7 +9,5 @@
 import UIKit
 
 class SudokuCollectionViewCell: UICollectionViewCell {
-    
-    // MARK: Properties
     @IBOutlet weak var value: UILabel!
 }
